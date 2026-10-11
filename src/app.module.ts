@@ -5,12 +5,13 @@ import { AuthModule } from './auth/auth.module.js';
 import { UserModule } from './user/user.module.js';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
+import { CourseModule } from './course/course.module.js';
 
 @Module({
   imports: [AuthModule,
     UserModule,
     ConfigModule.forRoot(), //env file read krne ka method, config module provided by netsjs
-    MongooseModule.forRoot(process.env.MONGODB_URL as string)], //mongoose package
+    MongooseModule.forRoot(process.env.MONGODB_URL as string), CourseModule], //mongoose package
   controllers: [AppController],
   providers: [AppService],
 })
