@@ -13,7 +13,8 @@ export class AuthService {
         const hash = await bcrypt.hash(registerUserDto.password,saltRounds);
         const user = await this.userService.createUser({...registerUserDto,password:hash});
 
-        const payload = {sub: user._id}; // payload jo hmm store krvaaenge token mein
+        //we'll have to remove the role as admin from here, as of now just for testing
+        const payload = {sub: user._id, role:'admin'}; // payload jo hmm store krvaaenge token mein
         const token = await this.jwtService.signAsync(payload);
         
         return {access_token:token}; // token ko return krdo json form mein
